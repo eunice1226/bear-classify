@@ -1,5 +1,5 @@
 # bear-classify
-Classify 5 classes of bears: train, inference and deploy
+Classify 5 classes of bears: training, inference and deploy
 # Dataset
 https://www.kaggle.com/datasets/hoturam/bear-dataset
 # Program list
