@@ -12,7 +12,7 @@ https://www.kaggle.com/datasets/hoturam/bear-dataset
 * Run `train.py`
 # Inference
 * Run `predict.py`
-# Use API to inference (deploy)
+# Use API to inference  
 * Run `app_fastapi.py` or `app_flask.py`
 * Go to command prompt and enter the following command:
   ```
