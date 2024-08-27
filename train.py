@@ -22,7 +22,7 @@ print(tf.test.is_gpu_available())
 print(tf.config.list_physical_devices('GPU'))
 
 # training dataset
-trpath = "D:/YJ/Kaggle/data/"
+trpath = "./Kaggle/data/"
 
 # load dataset
 # trdata = ImageDataGenerator(rescale = 1./255,
