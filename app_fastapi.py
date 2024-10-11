@@ -39,5 +39,4 @@ async def predict(file: UploadFile = File(...)):
                     "confidence": round(float(confidence), 3)}
 
 nest_asyncio.apply()
-host = "127.0.0.1"
-uvicorn.run(app, host=host, port=8000)
+uvicorn.run(app)
