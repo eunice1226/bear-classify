@@ -25,10 +25,6 @@ print(tf.config.list_physical_devices('GPU'))
 trpath = "./Kaggle/data/"
 
 # load dataset
-# trdata = ImageDataGenerator(rescale = 1./255,
-#                             rotation_range=45,
-#                             horizontal_flip=True,
-#                             validation_split=0.2)
 trdata = ImageDataGenerator(validation_split=0.2)
 traindata = trdata.flow_from_directory(directory=trpath, 
                                        target_size=(256,256),
@@ -39,46 +35,13 @@ valdata = trdata.flow_from_directory(directory=trpath,
                                      shuffle=True,
                                      subset='validation')
 
-# print(traindata.batch_size)
-# print(traindata.samples)
-# print(valdata.samples)
-
-# traindata = tf.keras.preprocessing.image_dataset_from_directory(
-#     trpath,
-#     validation_split=0.2,
-#     seed=123,
-#     label_mode="categorical",
-#     subset="training"
-# )
-# valdata  = tf.keras.preprocessing.image_dataset_from_directory(
-#     trpath,
-#     validation_split=0.2,
-#     seed=123,
-#     label_mode="categorical",
-#     subset="validation"
-# )
-
-# class_names = traindata.class_names
-# print(class_names)
-
 spe = traindata.samples // traindata.batch_size # steps_per_epoch
 vs = valdata.samples // traindata.batch_size # validation_steps
-
-# bs = 128
-# spe = traindata.samples // bs # steps_per_epoch
-# vs = valdata.samples // bs # validation_steps
-
-# spe = 248 // 32 # steps_per_epoch
-# vs = 61 // 32 # validation_steps
 
 # build model
 inputs = tf.keras.Input(shape=(256, 256, 3))
 
-# not use data augmentation layer
-# base_model = VGG16(include_top=False, weights='imagenet', input_tensor=inputs)
-# base_model = VGG16(include_top=False, weights=None, input_tensor=inputs)
-
-# use data augmentation layer
+# data augmentation layer
 data_augmentation = tf.keras.Sequential(
     [
         layers.RandomFlip("horizontal"),
@@ -88,14 +51,11 @@ data_augmentation = tf.keras.Sequential(
 )
 base_model = data_augmentation(inputs)
 base_model = VGG16(include_top=False, weights='imagenet', input_tensor=base_model)
-# base_model = VGG16(include_top=False, weights=None, input_tensor=base_model)
 
 x = base_model.output
 x = layers.Flatten()(x)
 x = layers.Dense(4096, activation="relu", kernel_regularizer=regularizers.l2(0.01))(x)
 x = layers.Dense(4096, activation="relu", kernel_regularizer=regularizers.l2(0.01))(x)
-# x = layers.Dense(4096, activation="relu")(x)
-# x = layers.Dense(4096, activation="relu")(x)
 outputs = layers.Dense(5, activation="softmax")(x)
 model = tf.keras.Model(inputs=inputs, outputs=outputs)
 
