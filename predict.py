@@ -29,7 +29,7 @@ folderlist.append(panda_path)
 folderlist.append(polar_path)
 folderlist.append(teddy_path)
 
-y_true = [0]*2 + [1]*2 + [2]*2 + [3]*2 + [4]*2
+y_true = [0]*10 + [1]*10 + [2]*10 + [3]*10 + [4]*10
 y_pred = []
 
 for i in range(len(folderlist)):
