@@ -18,7 +18,7 @@ https://www.kaggle.com/datasets/hoturam/bear-dataset
   ```
   curl -X POST "http://127.0.0.1:8000/predict/" -F "file=@your_image_path"
   ```
-* If you use `app_fastapi.py`, you also can go to `http://127.0.0.1:8000/docs` to upload your image to inference
+* If you use `app_fastapi.py`, you also can go to `http://127.0.0.1:8000/docs` to upload your image to inference (test API)
 # Use User Interface to inference
 * Run `app_gradio.py`
 * Example:
